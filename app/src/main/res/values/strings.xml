@@ -8,6 +8,11 @@
     <string name="last_name">Last Name</string>
     <string name="hint_otp">OTP</string>
     <string name="empty_field">This field cannot be empty</string>
+    <string name="email_error">Invalid email</string>
+    <string name="email_sent_message">Verification code has been sent to your email</string>
+    <string name="kc_email">kamand.connect@gmail.com</string>
+    <string name="kc_password">kamandconnect@123</string>
+
 
     <string-array name="stream_array">
         <item>Computer Science</item>
@@ -22,4 +27,5 @@
         <item>2016</item>
         <item>2017</item>
     </string-array>
+
 </resources>
