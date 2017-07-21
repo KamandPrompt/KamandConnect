@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/first_name_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/first_name"
+        android:padding="16dp"/>
+
+    <EditText
+        android:id="@+id/last_name_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/last_name"
+        android:padding="16dp"/>
+
+    <EditText
+        android:id="@+id/signup_email_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_email"
+        android:padding="16dp"/>
+
+    <EditText
+        android:id="@+id/signup_password_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:padding="16dp"
+        android:hint="@string/hint_password" />
+
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/stream_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/stream_array"
+            android:padding="16dp"
+            android:layout_marginTop="10dp"></Spinner>
+
+        <Spinner
+            android:id="@+id/batch_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="16dp"
+            android:entries="@array/batch_array"></Spinner>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_verify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Verify"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/otp_signup"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_otp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/button_final_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/signup"
+        android:layout_gravity="center"
+        android:visibility="invisible"/>
+
+</LinearLayout>

@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Kamand Connect</string>
+    <string name="hint_email">Email (abc@students.iitmandi.ac.in)</string>
+    <string name="hint_password">Password</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign up</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="hint_otp">OTP</string>
+    <string name="empty_field">This field cannot be empty</string>
+
+    <string-array name="stream_array">
+        <item>Computer Science</item>
+        <item>Electrical</item>
+        <item>Mechanical</item>
+        <item>Civil</item>
+    </string-array>
+
+    <string-array name="batch_array">
+        <item>2014</item>
+        <item>2015</item>
+        <item>2016</item>
+        <item>2017</item>
+    </string-array>
 </resources>
