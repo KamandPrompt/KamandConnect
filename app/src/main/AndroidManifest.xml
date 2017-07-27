@@ -22,6 +22,11 @@
         </activity>
 
         <activity android:name=".SignupActivity"></activity>
+        
+        <provider
+            android:authorities="com.example.ssh.kamandconnect"
+            android:name="com.example.ssh.kamandconnect.data.DirectoryContentProvider"
+            android:exported="false" />
 
     </application>
 
