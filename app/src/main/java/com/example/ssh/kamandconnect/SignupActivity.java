@@ -4,6 +4,9 @@ package com.example.ssh.kamandconnect;
  * Created by hitman on 21/07/17.
  */
 
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -14,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.ssh.kamandconnect.data.DirectoryContract;
 
 import java.util.Arrays;
 import java.util.List;
@@ -57,20 +62,24 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 boolean isValid = checkSignUp();
-                if(!isValid) {
+                if(!isValid)
                     return;
+                String webmail = mEmail.getText().toString();
+                new queryWithWebmailTask().execute(webmail);
+            }
+        });
+
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String otp = mOTP.getText().toString();
+                Log.d("verification code", verificationCode);
+                if(otp.equals(verificationCode)) {
+                    Toast.makeText(view.getContext(), "Verified", Toast.LENGTH_LONG).show();
                 }
-                String toEmail = mEmail.getText().toString();
-                List toEmailList = Arrays.asList(toEmail.split("\\s*,\\s*"));
-                verificationCode = getVerificationCode();
-                new SendMailTask().execute(getString(R.string.kc_email),
-                        getString(R.string.kc_password),toEmailList, "Kamand Connect Verification code",
-                        "Thanks for signing up " + mFirstName.getText().toString() + ". \nYour verification code is - " + verificationCode);
-                mEmail.setEnabled(false);
-                mOTP.setVisibility(View.VISIBLE);
-                signupButton.setVisibility(View.VISIBLE);
-                String verficiation_code_sent_message = getString(R.string.email_sent_message);
-                Toast.makeText(getApplicationContext(), verficiation_code_sent_message, Toast.LENGTH_LONG).show();
+                else {
+                    Toast.makeText(view.getContext(), "Wrong verification code", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -123,5 +132,66 @@ public class SignupActivity extends AppCompatActivity {
         return sb.toString();
     }
 
+    public void sendMail() {
 
+        String toEmail = mEmail.getText().toString();
+        List toEmailList = Arrays.asList(toEmail.split("\\s*,\\s*"));
+        verificationCode = getVerificationCode();
+        new SendMailTask().execute(getString(R.string.kc_email),
+                getString(R.string.kc_password),toEmailList, "Kamand Connect Verification code",
+                "Thanks for signing up " + mFirstName.getText().toString() + ". \nYour verification code is - " + verificationCode);
+        mEmail.setEnabled(false);
+        mOTP.setVisibility(View.VISIBLE);
+        signupButton.setVisibility(View.VISIBLE);
+        verifyButton.setEnabled(false);
+        String verficiation_code_sent_message = getString(R.string.email_sent_message);
+        Toast.makeText(getApplicationContext(), verficiation_code_sent_message, Toast.LENGTH_LONG).show();
+        mOTP.setFocusable(true);
+    }
+
+    public void alreadyPresentEmail() {
+        mEmail.setError(getString(R.string.email_present));
+        Toast.makeText(this, "Email Already present", Toast.LENGTH_LONG).show();
+    }
+
+    public void invalidMail() {
+        mEmail.setError(getString(R.string.email_error));
+    }
+
+    public class queryWithWebmailTask extends AsyncTask<String, Void, Cursor> {
+
+        @Override
+        protected Cursor doInBackground(String... strings) {
+            String webmail = strings[0];
+            Cursor cursor = null;
+            Uri uri = Uri.parse(DirectoryContract.UserTable.CONTENT_URI.buildUpon()
+                    .appendPath("id").build().toString() + "/" + webmail);
+            try {
+                cursor = getContentResolver().query(uri,
+                        null,
+                        null,
+                        null,
+                        null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return cursor;
+        }
+
+        @Override
+        protected void onPostExecute(Cursor cursor) {
+            super.onPostExecute(cursor);
+            if(cursor != null && cursor.getCount() > 0) {
+                cursor.moveToNext();
+                if(cursor.getInt(cursor.getColumnIndex(DirectoryContract.UserTable.VERIFIED)) > 0) {
+                    alreadyPresentEmail();
+                }
+                else {
+                    sendMail();
+                }
+            }
+            else
+                invalidMail();
+        }
+    }
 }

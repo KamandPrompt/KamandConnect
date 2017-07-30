@@ -3,7 +3,13 @@ package com.example.ssh.kamandconnect.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Network;
 import android.util.Log;
+
+import com.example.ssh.kamandconnect.GetAllUsersTask;
+import com.example.ssh.kamandconnect.utilities.NetworkUtils;
+
+import java.net.URL;
 
 public class DirectoryHelper extends SQLiteOpenHelper {
 
@@ -22,8 +28,8 @@ public class DirectoryHelper extends SQLiteOpenHelper {
                 DirectoryContract.UserTable.LAST_NAME + " TEXT NOT NULL, " +
                 DirectoryContract.UserTable.ROLL_NO + " TEXT NOT NULL, " +
                 DirectoryContract.UserTable.WEBMAIL + " TEXT NOT NULL PRIMARY KEY, " +
-                DirectoryContract.UserTable.BATCH + " TEXT NOT NULL, " +
-                DirectoryContract.UserTable.STREAM + " TEXT NOT NULL, " +
+                DirectoryContract.UserTable.BATCH + " TEXT, " +
+                DirectoryContract.UserTable.STREAM + " TEXT, " +
                 DirectoryContract.UserTable.HOSTEL + " TEXT, " +
                 DirectoryContract.UserTable.ROOM_NO + " TEXT, " +
                 DirectoryContract.UserTable.DESCRIPTION + " TEXT, " +
