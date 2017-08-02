@@ -14,6 +14,16 @@
     <string name="kc_password">kamandconnect@123</string>
     <string name="network_connection_error">Error fetching the data, Server might be down or please check your internet connection</string>
     <string name="email_present" >Email already present</string>
+    <string name="invalid_credentials">Invalid email or password</string>
+    <string name="signup_first">Not yet signed up. Please sign up first</string>
+    <string name="logged_in">loggedIn</string>
+    <string name="webmail_of_current_user">user_webmail</string>
+    <string name="name_search_basis">Name</string>
+    <string name="phone_search_basis">Phone</string>
+    <string name="roll_no_search_basis">Roll no</string>
+    <string name="hostel_room_search_basis">Hostel and Room no</string>
+    <string name="position_search_basis">Position</string>
+    <string name="stream_search_basis">Stream</string>
 
     <string-array name="stream_array">
         <item>Computer Science</item>
@@ -27,6 +37,14 @@
         <item>2015</item>
         <item>2016</item>
         <item>2017</item>
+    </string-array>
+
+    <string-array name="hostels_array">
+        <item>Nako B5</item>
+        <item>Nako B6</item>
+        <item>Suvalsar G4</item>
+        <item>Suvalsar G3</item>
+        <item>Test hostel</item>
     </string-array>
 
 </resources>

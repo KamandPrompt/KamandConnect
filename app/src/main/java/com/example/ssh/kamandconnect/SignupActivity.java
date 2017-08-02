@@ -4,6 +4,7 @@ package com.example.ssh.kamandconnect;
  * Created by hitman on 21/07/17.
  */
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -75,7 +76,15 @@ public class SignupActivity extends AppCompatActivity {
                 String otp = mOTP.getText().toString();
                 Log.d("verification code", verificationCode);
                 if(otp.equals(verificationCode)) {
+                    String webmail = mEmail.getText().toString();
                     Toast.makeText(view.getContext(), "Verified", Toast.LENGTH_LONG).show();
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put(DirectoryContract.UserTable.VERIFIED, true);
+                    contentValues.put(DirectoryContract.UserTable.PASSWORD, mPassword.getText().toString());
+                    Uri uri = Uri.parse(DirectoryContract.UserTable.CONTENT_URI.buildUpon()
+                            .appendPath("verify")
+                            .appendPath("id").build().toString() + "/" + webmail);
+                    getContentResolver().update(uri, contentValues, null, null);
                 }
                 else {
                     Toast.makeText(view.getContext(), "Wrong verification code", Toast.LENGTH_LONG).show();

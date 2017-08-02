@@ -28,6 +28,7 @@ public class DirectoryContentProvider extends ContentProvider {
     private static final int USER_DETAILS_WITH_HOSTEL = 106;
     private static final int USER_DETAILS_WITH_ROOM = 107;
     private static final int USER_DETAILS_WITH_HOSTEL_AND_ROOM = 108;
+    private static final int USER_DETAILS_WITH_ID_VERIFY = 109;
 
     private static final int USER_PHONE = 200;
     private static final int USER_PHONE_WITH_ID = 201;
@@ -50,6 +51,7 @@ public class DirectoryContentProvider extends ContentProvider {
         uriMatcher.addURI(DirectoryContract.AUTHORITY, DirectoryContract.PATH_USER_DETAILS + "/hostel/*", USER_DETAILS_WITH_HOSTEL);
         uriMatcher.addURI(DirectoryContract.AUTHORITY, DirectoryContract.PATH_USER_DETAILS + "/room/*", USER_DETAILS_WITH_ROOM);
         uriMatcher.addURI(DirectoryContract.AUTHORITY, DirectoryContract.PATH_USER_DETAILS + "/hostel/*/room/*", USER_DETAILS_WITH_HOSTEL_AND_ROOM);
+        uriMatcher.addURI(DirectoryContract.AUTHORITY, DirectoryContract.PATH_USER_DETAILS + "/verify/id/*", USER_DETAILS_WITH_ID_VERIFY);
 
         uriMatcher.addURI(DirectoryContract.AUTHORITY, DirectoryContract.PATH_USER_PHONES, USER_PHONE);
         uriMatcher.addURI(DirectoryContract.AUTHORITY, DirectoryContract.PATH_USER_PHONES + "/id/*", USER_PHONE_WITH_ID);
@@ -93,8 +95,6 @@ public class DirectoryContentProvider extends ContentProvider {
                 String webmail = uri.getPathSegments().get(2);
                 String mSelection = DirectoryContract.UserTable.WEBMAIL + "=?";
                 String[] mSelectionArgs = new String[]{webmail};
-                Log.d("uri", uri.toString());
-                Log.d("webmail", webmail);
                 returnCursor = db.query(DirectoryContract.UserTable.USER_TABLE,
                         projection,
                         mSelection,
@@ -212,7 +212,28 @@ public class DirectoryContentProvider extends ContentProvider {
     }
 
     @Override
-    public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String s, @Nullable String[] strings) {
-        return 0;
+    public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String selection, @Nullable String[] selectionArgs) {
+        final SQLiteDatabase db = mDirectoryHelper.getWritableDatabase();
+        int match = sUriMatcher.match(uri);
+        int rowsUpdated = 0;
+        switch (match) {
+            case USER_DETAILS_WITH_ID_VERIFY:
+                String verify = uri.getPathSegments().get(1);
+                if(!verify.equals("verify"))
+                    break;
+                String webmail = uri.getPathSegments().get(3);
+                String mSelection = DirectoryContract.UserTable.WEBMAIL + "=?";
+                String[] mSelectionArgs = new String[]{webmail};
+                rowsUpdated = db.update(DirectoryContract.UserTable.USER_TABLE,
+                        contentValues,
+                        mSelection,
+                        mSelectionArgs);
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown uri " + uri);
+        }
+        if(rowsUpdated > 0)
+            getContext().getContentResolver().notifyChange(uri, null);
+        return rowsUpdated;
     }
 }

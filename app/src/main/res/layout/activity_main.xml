@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select the basis on which you want to search"
+        android:textSize="15dp"/>
+    
+    <RadioGroup
+        android:id="@+id/radio_selection_basis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/radio_name"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_search_basis" />
+
+        <RadioButton
+            android:id="@+id/radio_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_search_basis"/>
+
+        <RadioButton
+            android:id="@+id/radio_roll_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/roll_no_search_basis" />
+
+        <RadioButton
+            android:id="@+id/radio_hostel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hostel_room_search_basis" />
+
+        <RadioButton
+            android:id="@+id/radio_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/position_search_basis"/>
+
+        <RadioButton
+            android:id="@+id/radio_stream"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stream_search_basis"/>
+        
+    </RadioGroup>
+    
+    <EditText
+        android:id="@+id/search_edit_text"
+        android:layout_margin="16dp"
+        android:padding="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Name"
+        android:layout_gravity="center" />
+    
+    <LinearLayout
+        android:id="@+id/hostel_room_layout"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+        <Spinner
+            android:id="@+id/hostel_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:entries="@array/hostels_array"></Spinner>
+
+        <EditText
+            android:id="@+id/room_no_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="Enter Room no"/>
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/stream_spinner"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:entries="@array/stream_array"></Spinner>
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Search"/>
+
+
+</LinearLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <android.support.v7.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="5dp">
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/contact_info_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/contact"
+                android:layout_marginRight="16dp"/>
+
+            <TextView
+                android:id="@+id/user_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/contact_info_image"
+                android:textSize="30dp"
+                android:text="Hitesh Ramchandani" />
+
+            <TextView
+                android:id="@+id/user_description_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_name_tv"
+                android:layout_toRightOf="@+id/contact_info_image"
+                android:text="; completes me !"/>
+
+            <ImageView
+                android:id="@+id/email_icon"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_email_black_24px"
+                android:layout_below="@+id/contact_info_image" />
+
+            <TextView
+                android:id="@+id/user_email_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/email_icon"
+                android:layout_below="@+id/contact_info_image"
+                android:layout_marginTop="7dp"
+                android:text="b15232@students.iitmandi.ac.in"
+                android:textSize="18dp"
+                android:paddingLeft="10sp"/>
+
+            <ImageView
+                android:id="@+id/phone_icon"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_phone_black_24px"
+                android:layout_below="@+id/email_icon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/email_icon"
+                android:layout_below="@+id/user_email_tv"
+                android:text="9736401997"
+                android:layout_marginTop="7dp"
+                android:textSize="18dp"
+                android:paddingLeft="10sp"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+
 
     <application
         android:allowBackup="true"
@@ -22,6 +25,7 @@
         </activity>
 
         <activity android:name=".SignupActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
         
         <provider
             android:authorities="com.example.ssh.kamandconnect"
