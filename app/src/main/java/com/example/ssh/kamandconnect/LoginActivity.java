@@ -43,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         View view = this.findViewById(android.R.id.content);
 
+        Intent service = new Intent(this, ServiceCommunicator.class);
+        startService(service);
+
         mLoginEmailEditText = (EditText) findViewById(R.id.login_email_edit_text);
         mLoginPasswordEditText = (EditText) findViewById(R.id.login_password_edit_text);
 
